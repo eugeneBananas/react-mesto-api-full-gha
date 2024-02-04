@@ -13,6 +13,6 @@
 
 IP-адрес 51.250.69.204
 
-Frontend http://mesto-eugenebananas-front.nomoredomainsmonster.ru/
+Frontend http://mesto-eugenebananas.nomoredomainsmonster.ru/
 
-Backend http://api.mesto-eugenebananas-front.nomoredomainsmonster.ru/
+Backend http://api.mesto-eugenebananas.nomoredomainsmonster.ru/
