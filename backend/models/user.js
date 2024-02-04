@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const AnthorizedError = require('../errors/unathorized-error');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -15,7 +17,16 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+    default:
+      'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
+    validate: {
+      validator(avatar) {
+        return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/.test(
+          avatar,
+        );
+      },
+      message: 'URL должен начинаться с https://',
+    },
   },
   email: {
     type: String,
@@ -32,9 +43,30 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6,
     select: false,
   },
 });
+
+userSchema.statics.findUserByCredentials = function findUserByCredentials(
+  email,
+  password,
+) {
+  return this.findOne({ email })
+    .select('+password')
+    .then((user) => {
+      if (!user) {
+        console.log(1);
+        throw new AnthorizedError('Неправильные почта или пароль');
+      }
+      return bcrypt.compare(password, user.password).then((matched) => {
+        if (!matched) {
+          console.log(3);
+          throw new AnthorizedError('Неправильные почта или пароль');
+        }
+        console.log(4);
+        return user;
+      });
+    });
+};
 
 module.exports = mongoose.model('user', userSchema);

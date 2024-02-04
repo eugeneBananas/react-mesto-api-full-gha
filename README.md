@@ -11,8 +11,8 @@
 
 // У меня не запускается сайт с фронтендом, делал все как по инструкции, но появлялась ошибка 403. впоследствии появляется 500, не знаю, как исправить. https тоже не могу настроить.
 
-IP-адрес 51.250.69.204
+IP-адрес 178.154.205.63
 
-Frontend http://mesto-eugenebananas.nomoredomainsmonster.ru/
+Frontend https://mesto-eugenebananas.nomoredomainswork.ru
 
-Backend http://api.mesto-eugenebananas.nomoredomainsmonster.ru/
+Backend https://api.mesto-eugenebananas.nomoredomainswork.ru

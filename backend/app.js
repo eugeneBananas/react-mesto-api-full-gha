@@ -1,18 +1,20 @@
 const HTTP_STATUS = {
-  NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
 };
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require('./errors/not-found-error');
 
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
 
 mongoose.connect(DB_URL);
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,12 +44,11 @@ app.use(auth); // почему перехватывает другие ошиб�
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
-app.use(errorLogger);
-
 app.use((req, res, next) => {
-  res.status(HTTP_STATUS.NOT_FOUND).send({ message: 'Страницы не существует' });
-  next();
+  next(new NotFoundError('Страницы не существует'));
 });
+
+app.use(errorLogger);
 
 app.use((error, req, res, next) => {
   const { statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR, message } = error;

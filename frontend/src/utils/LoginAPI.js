@@ -44,7 +44,9 @@ class LoginAPI {
 }
 
 const loginAPI = new LoginAPI({
-  baseUrl: "https://auth.nomoreparties.co",
+  // baseUrl: "https://auth.nomoreparties.co",
+  // baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.mesto-eugenebananas.nomoredomainswork.ru" ,
 });
 
 export default loginAPI;

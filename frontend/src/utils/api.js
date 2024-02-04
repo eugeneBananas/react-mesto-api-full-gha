@@ -82,7 +82,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-76",
+  // baseUrl: "https://mesto.nomoreparties.co/v1/cohort-76",
+  // baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.mesto-eugenebananas.nomoredomainswork.ru" ,
   headers: {
     authorization: "c8a10fcc-f2aa-44d9-b608-81dcddb7b883",
     "Content-Type": "application/json",
