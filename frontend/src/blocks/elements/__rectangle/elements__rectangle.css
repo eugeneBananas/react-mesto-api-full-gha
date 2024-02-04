@@ -1,0 +1,7 @@
+.elements__rectangle{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    background: white;
+    margin-top: 22px;
+}

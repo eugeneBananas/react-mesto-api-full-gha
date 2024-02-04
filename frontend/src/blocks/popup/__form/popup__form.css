@@ -1,0 +1,15 @@
+.popup__form{
+    margin-left: calc(36/430*100%);
+    margin-right: calc(36/430*100%);
+    margin-top: 54px;
+    gap: 30px;
+}
+
+@media all and (max-width: 720px)
+{
+    .popup__form{
+        margin-top: 75px;
+        margin: auto;
+        width: calc(238/282*100%);
+    }
+}

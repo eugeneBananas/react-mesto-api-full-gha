@@ -1,0 +1,9 @@
+.elements__element{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 282/362;
+    background-color: white;
+}

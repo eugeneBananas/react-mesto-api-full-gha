@@ -1,0 +1,7 @@
+.elements__image{
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: 282px;
+    background-size: cover;
+    background-position: center center;
+}

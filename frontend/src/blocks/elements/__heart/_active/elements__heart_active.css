@@ -1,0 +1,4 @@
+.elements__heart_active{
+    background-image: url('../../../../images/elements-heart-active.svg');
+    opacity: 100%;
+}

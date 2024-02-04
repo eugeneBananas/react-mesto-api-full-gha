@@ -1,0 +1,18 @@
+.authorization__link{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+.authorization__link:hover{
+    opacity: 60%;
+}

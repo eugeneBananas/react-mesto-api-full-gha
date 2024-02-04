@@ -1,0 +1,10 @@
+.popup__status-text{
+    color: black;
+    max-width: 358px;
+    margin: 32px auto 60px;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+}

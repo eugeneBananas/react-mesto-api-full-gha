@@ -1,0 +1,38 @@
+.profile__edit-avatar{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    z-index: 2;
+    display: inline-block;
+    background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.profile__edit-avatar:hover{
+    background-color: rgba(0, 0, 0, .8);
+    transition: .4s ease;
+}
+
+.profile__edit-avatar::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+.profile__edit-avatar:hover::before{
+    background: url("../../../images/rename_pencil.svg") no-repeat center center;
+    z-index: 5;
+    opacity: 1;
+}

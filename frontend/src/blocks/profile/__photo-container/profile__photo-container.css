@@ -1,0 +1,6 @@
+.profile__photo-container{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+}

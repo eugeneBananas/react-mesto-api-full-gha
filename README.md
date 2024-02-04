@@ -9,8 +9,10 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+// У меня не запускается сайт с фронтендом, делал все как по инструкции, но появлялась ошибка 403. впоследствии появляется 500, не знаю, как исправить. https тоже не могу настроить.
 
-Frontend https://...
+IP-адрес 51.250.69.204
 
-Backend https://...
+Frontend http://mesto-eugenebananas-front.nomoredomainsmonster.ru/
+
+Backend http://api.mesto-eugenebananas-front.nomoredomainsmonster.ru/

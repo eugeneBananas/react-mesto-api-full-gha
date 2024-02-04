@@ -1,0 +1,16 @@
+.elements__text{
+    margin: 0;
+    position: relative;
+    left: 21px;
+    bottom: 1px;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 23px;
+    color: black;
+    width: calc(196/282*100%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-top: 8px;
+    padding-bottom: calc(19/282*100%);
+}
