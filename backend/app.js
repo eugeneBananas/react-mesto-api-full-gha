@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const NotFoundError = require('./errors/not-found-error');
@@ -19,14 +20,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.use((req, res, next) => {
-//   req.user = {
-//     _id: '65aefc6a48155116a73b503b',
-//   };
-
-//   next();
-// });
-
 app.use(requestLogger);
 
 app.get('/crash-test', () => {
@@ -39,8 +32,14 @@ app.get('/crash-test', () => {
 app.use('/signin', require('./routes/signin'));
 app.use('/signup', require('./routes/signup'));
 
-app.use(auth); // почему перехватывает другие ошибки
+app.use(auth);
 // требуют авторизации
+
+app.use((req, res, next) => {
+  console.log('Headers received:', req.user);
+  next();
+});
+
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
 
@@ -49,6 +48,8 @@ app.use((req, res, next) => {
 });
 
 app.use(errorLogger);
+
+app.use(errors());
 
 app.use((error, req, res, next) => {
   const { statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR, message } = error;

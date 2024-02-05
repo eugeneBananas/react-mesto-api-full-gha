@@ -4,11 +4,12 @@ const AnthorizedError = require('../errors/unathorized-error');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-
+  // console.log("!!! " + authorization);
   if (!authorization || !authorization.startsWith('Bearer ')) {
+    // console.log(1.1);
     next(new AnthorizedError('Неправильная почта или пароль'));
   }
-
+  // console.log(1.2);
   const token = authorization.replace('Bearer ', '');
   let payload;
 
@@ -19,6 +20,7 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload; // записываем пейлоуд в объект запроса
+  // console.log(req.user._id + " !!!")
 
   next(); // пропускаем запрос дальше
 };

@@ -19,7 +19,8 @@ class Card extends React.Component {
   };
 
   isLiked = () => {
-    return this.props.card.likes.some((i) => i._id === this.context._id);
+    // console.log(this.props.card)
+    return this.props.card.likes.some((i) => i === this.context._id);
   };
 
   handleLike = () => {
@@ -38,7 +39,7 @@ class Card extends React.Component {
           style={{ backgroundImage: `url(${this.props.card.link})` }}
           onClick={this.handleClick}
         ></div>
-        {this.props.card.owner._id === this.context._id && (
+        {this.props.card.owner === this.context._id && (
           <button
             type="button"
             onClick={this.handleDeleteClick}

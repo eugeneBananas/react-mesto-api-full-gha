@@ -39,7 +39,9 @@ module.exports.getOneUser = (req, res, next) => {
 
 module.exports.getInfo = (req, res, next) => {
   User.findById(req.user._id)
-    .then((user) => res.send({ data: user }))
+    .then((user) => {
+      res.send(user);
+    })
     .catch((err) => {
       if (err instanceof mongoose.Error.CastError) {
         next(new BadRequestError(err.message));
@@ -67,7 +69,10 @@ module.exports.createUser = (req, res, next) => {
       password: hash,
     }))
     .then(() => res.status(HTTP_STATUS.CREATED).send({
-      name, about, avatar, email,
+      name,
+      about,
+      avatar,
+      email,
     }))
     .catch((err) => {
       if (err.code === 11000) {
@@ -118,20 +123,25 @@ module.exports.editUserAvatar = (req, res, next) => {
 };
 
 module.exports.login = (req, res, next) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
 
-  return User.findUserByCredentials(email)
+  return User.findUserByCredentials(email, password)
     .then((user) => {
+      // console.log(req.user + user._id + ' 1');
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: '7d',
       });
-      res
-        .cookie('jwt', token, {
-          maxAge: 3600000,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .end();
+      // console.log(req.user + ' 2');
+      // req.headers.authorization = `Bearer +${token}`;
+      // req.user._id = user._id;
+      // console.log(req.user + ' 3');
+      res.send({ token });
+      // .cookie('jwt', token, {
+      //   maxAge: 3600000,
+      //   httpOnly: true,
+      //   sameSite: true,
+      // })
+      // .end();
     })
     .catch((err) => {
       next(new AnthorizedError(err.message));

@@ -35,6 +35,7 @@ class Api {
   }
 
   addCard(name, link) {
+    console.log(name, link)
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
@@ -53,6 +54,7 @@ class Api {
   }
 
   likeCard(id) {
+    console.log(12321321323123121)
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
@@ -60,6 +62,7 @@ class Api {
   }
 
   unlikeCard(id) {
+    console.log(12321321321126)
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
@@ -67,7 +70,7 @@ class Api {
   }
 
   changeLikeCardStatus(id, isLiked) {
-    return !isLiked ? this.likeCard(id) : this.unlikeCard(id)
+    return !isLiked ? this.likeCard(id) : this.unlikeCard(id);
   }
 
   changeAvatar(url) {
@@ -86,7 +89,9 @@ const api = new Api({
   // baseUrl: "http://localhost:3000",
   baseUrl: "https://api.mesto-eugenebananas.nomoredomainswork.ru" ,
   headers: {
-    authorization: "c8a10fcc-f2aa-44d9-b608-81dcddb7b883",
+    authorization: localStorage.getItem("token")
+      ? "Bearer " + localStorage.getItem("token")
+      : null,
     "Content-Type": "application/json",
   },
 });

@@ -10,6 +10,10 @@ const {
 
 router.get('/', getUsers);
 router.get(
+  '/me',
+  getInfo,
+);
+router.get(
   '/:userId',
   celebrate({
     params: Joi.object().keys({
@@ -17,15 +21,6 @@ router.get(
     }),
   }),
   getOneUser,
-);
-router.get(
-  '/me',
-  celebrate({
-    params: Joi.object().keys({
-      cardId: Joi.string().length(24).hex().required(),
-    }),
-  }),
-  getInfo,
 );
 router.patch(
   '/me',

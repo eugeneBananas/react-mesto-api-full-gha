@@ -112,6 +112,7 @@ export default function App() {
     api
       .addCard(info.title, info.link)
       .then((newCard) => {
+        console.log(newCard)
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
@@ -157,12 +158,12 @@ export default function App() {
   };
 
   const handleCardLike = (card, context, changeFunction) => {
-    const isLiked = card.likes.some((i) => i._id === context._id);
+    const isLiked = card.likes.some((i) => i === context._id);
 
     api
       .changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
-        changeFunction((state) =>
+        changeFunction((state) => 
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
@@ -221,7 +222,7 @@ export default function App() {
       const jwt = localStorage.getItem("token");
       console.log(jwt);
       loginAPI.checkToken(jwt).then((res) => {
-        setEmail(res.data.email);
+        setEmail(res.email);
         if (res) {
           setLoggedIn(true);
           navigate("/", { replace: true });
