@@ -30,7 +30,6 @@ module.exports.getCards = (req, res, next) => {
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
-  console.log(req.user._id);
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
       // console.log(card.owner);

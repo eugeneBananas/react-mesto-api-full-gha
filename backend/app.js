@@ -35,10 +35,10 @@ app.use('/signup', require('./routes/signup'));
 app.use(auth);
 // требуют авторизации
 
-app.use((req, res, next) => {
-  console.log('Headers received:', req.user);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('Headers received:', req.user);
+//   next();
+// });
 
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));

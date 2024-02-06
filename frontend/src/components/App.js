@@ -206,8 +206,9 @@ export default function App() {
       .then((data) => {
         setEmail(email);
         if (data.token) {
-          setLoggedIn(true);
+          api._headers = { ...api._headers, authorization: `Bearer ${data.token}`};
           localStorage.setItem("token", data.token);
+          setLoggedIn(true);
           navigate("/", { replace: true });
         }
       })
@@ -220,7 +221,6 @@ export default function App() {
   const handleTokenCheck = () => {
     if (localStorage.getItem("token")) {
       const jwt = localStorage.getItem("token");
-      console.log(jwt);
       loginAPI.checkToken(jwt).then((res) => {
         setEmail(res.email);
         if (res) {

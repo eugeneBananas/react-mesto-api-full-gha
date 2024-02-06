@@ -4,7 +4,6 @@ const AnthorizedError = require('../errors/unathorized-error');
 
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
-  // console.log("!!! " + authorization);
   if (!authorization || !authorization.startsWith('Bearer ')) {
     // console.log(1.1);
     next(new AnthorizedError('Неправильная почта или пароль'));
