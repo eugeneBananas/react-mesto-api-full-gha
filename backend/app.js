@@ -1,3 +1,4 @@
+require('dotenv').config();
 const HTTP_STATUS = {
   INTERNAL_SERVER_ERROR: 500,
 };
@@ -10,7 +11,8 @@ const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const NotFoundError = require('./errors/not-found-error');
 
-const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } =
+  process.env;
 
 const app = express();
 
@@ -54,7 +56,10 @@ app.use(errors());
 app.use((error, req, res, next) => {
   const { statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR, message } = error;
   res.status(statusCode).send({
-    message: statusCode === HTTP_STATUS.INTERNAL_SERVER_ERROR ? 'На сервере произошла ошибка' : message,
+    message:
+      statusCode === HTTP_STATUS.INTERNAL_SERVER_ERROR
+        ? 'На сервере произошла ошибка'
+        : message,
   });
   next();
 });
