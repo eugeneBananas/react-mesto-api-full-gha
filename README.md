@@ -11,8 +11,8 @@
 
 //=^)
 
-IP-адрес 178.154.205.63
+IP-адрес <178.154.205.63>
 
-Frontend https://mesto-eugenebananas.nomoredomainswork.ru
+Frontend <https://mesto-eugenebananas.nomoredomainswork.ru>
 
-Backend https://api.mesto-eugenebananas.nomoredomainswork.ru
+Backend <https://api.mesto-eugenebananas.nomoredomainswork.ru>
